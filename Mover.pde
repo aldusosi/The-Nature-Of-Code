@@ -5,13 +5,15 @@ class Mover
   PVector acceleration;
   
   float mass;
+  float bouncenes;
   int cor; 
   
   Mover(){
     position = new PVector(random(width), 10);
     velocity = new PVector(0, 0);
     acceleration = new PVector(0, 0);
-    mass = random(0.5,4);
+    mass = random(0.5,2);
+    bouncenes = 0.1;
     cor = (int)random(255);
   }
   
@@ -28,14 +30,14 @@ class Mover
   
   void edges(){
     if (position.x > width) {
-      position.x = width;
-      velocity.x *= -1;
+      //position.x = width;
+      velocity.x *= -bouncenes;
     } else if (position.x < 0) {
-      velocity.x *= -1;
+      velocity.x *= -bouncenes;
       position.x = 0;
     }
     if (position.y > height) {
-      velocity.y *= -1;
+      velocity.y *= -bouncenes;
       position.y = height;
     }
   }
